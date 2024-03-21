@@ -1,41 +1,13 @@
 {
-	"name": "@vscode/vscode-extension-recommender",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"author": {
+		"email": "Hello@Playform.Cloud",
+		"name": "Playform",
+		"url": "https://playform.cloud"
+	},
 	"bugs": {
 		"url": "https://github.com/CodeEditorLand/Foundation/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "dist/lib/index.js",
-	"module": "dist/lib/index.js",
-	"types": "dist/index.d.ts",
-	"scripts": {
-		"build": "npm run clean && webpack --mode production",
-		"clean": "rimraf dist",
-		"prepack": "npm run build",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"watch": "npm run clean && webpack --watch"
-	},
-	"mocha": {
-		"extension": [
-			"ts"
-		],
-		"require": "ts-node/register",
-		"spec": "test/*.test.ts",
-		"timeout": "5000"
-	},
+	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
 	"devDependencies": {
 		"@types/chai": "^4.3.3",
 		"@types/mocha": "8.2.3",
@@ -52,11 +24,39 @@
 		"ts-loader": "^9.3.1",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.8.3",
-		"typescript-esbuild": "0.4.5",
+		"typescript-esbuild": "",
 		"webpack": "~5.44.0",
 		"webpack-cli": "^4.10.0"
 	},
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "dist/lib/index.js",
+	"mocha": {
+		"extension": [
+			"ts"
+		],
+		"require": "ts-node/register",
+		"spec": "test/*.test.ts",
+		"timeout": "5000"
+	},
+	"module": "dist/lib/index.js",
+	"name": "@vscode/vscode-extension-recommender",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+	},
+	"scripts": {
+		"build": "npm run clean && webpack --mode production",
+		"clean": "rimraf dist",
+		"prepack": "npm run build",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"watch": "npm run clean && webpack --watch"
+	},
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"version": "0.0.1"
 }
