@@ -1,44 +1,13 @@
 {
-	"name": "@vscode/vscode-extension-recommender",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionRecommender#readme",
+	"author": {
+		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionRecommender/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionRecommender.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🌆 — Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
-	"main": "dist/lib/index.js",
-	"module": "dist/lib/index.js",
-	"types": "dist/index.d.ts",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"build": "npm run clean && webpack --mode production",
-		"clean": "rimraf dist",
-		"prepack": "npm run build",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"mocha": {
-		"extension": [
-			"ts"
-		],
-		"require": "ts-node/register",
-		"spec": "test/*.test.ts",
-		"timeout": "5000"
-	},
+	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -52,7 +21,38 @@
 		"rimraf": "5.0.5",
 		"ts-loader": "9.5.1"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionRecommender#readme",
+	"keywords": [
+		"land"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "dist/lib/index.js",
+	"mocha": {
+		"extension": [
+			"ts"
+		],
+		"require": "ts-node/register",
+		"spec": "test/*.test.ts",
+		"timeout": "5000"
+	},
+	"module": "dist/lib/index.js",
+	"name": "@vscode/vscode-extension-recommender",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionRecommender.git"
+	},
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"build": "npm run clean && webpack --mode production",
+		"clean": "rimraf dist",
+		"prepack": "npm run build",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"version": "0.0.1"
 }
