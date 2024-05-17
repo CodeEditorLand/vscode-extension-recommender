@@ -1,26 +1,6 @@
 {
 	"name": "@vscode/vscode-extension-recommender",
-	"version": "0.0.1",
-	"private": false,
 	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionRecommender#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandExtensionRecommender/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandExtensionRecommender.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🛬 Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
 	"main": "dist/lib/index.js",
 	"module": "dist/lib/index.js",
 	"types": "dist/index.d.ts",
@@ -41,7 +21,6 @@
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
 		"@types/chai": "4.3.16",
 		"@types/node": "20.12.10",
 		"chai": "5.1.0",
@@ -51,8 +30,5 @@
 		"onnxruntime-web": "1.17.3",
 		"rimraf": "5.0.5",
 		"ts-loader": "9.5.1"
-	},
-	"publishConfig": {
-		"access": "public"
 	}
 }
