@@ -1,0 +1,11 @@
+build
+test
+.vscode
+.github
+cli
+/model
+lib
+tsconfig.json
+webpack.config.js
+**/*.map
+*.tgz
