@@ -5,9 +5,9 @@
 		"@types/node": "22.5.0",
 		"chai": "5.1.1",
 		"esbuild": "0.23.1",
-		"node-fetch": "4.0.0-beta.4",
+		"node-fetch": "3.3.2",
 		"npm-run-all": "4.1.5",
-		"onnxruntime-web": "1.20.0-dev.20240822-ff3e8b02c3",
+		"onnxruntime-web": "1.19.0",
 		"rimraf": "6.0.1",
 		"ts-loader": "9.5.1"
 	},
