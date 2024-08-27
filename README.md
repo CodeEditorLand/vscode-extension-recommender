@@ -3,7 +3,7 @@
 Deep learning model to recommend the best extension for a given VS Code
 workspace.
 
-## Usage
+## 🛠️ Usage
 
 See `test` and API docs in `lib/index.ts`.
 
