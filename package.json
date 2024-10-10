@@ -1,23 +1,5 @@
 {
-	"name": "@vscode/vscode-extension-recommender",
 	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
-	"main": "dist/lib/index.js",
-	"module": "dist/lib/index.js",
-	"types": "dist/index.d.ts",
-	"scripts": {
-		"build": "npm run clean && webpack --mode production",
-		"clean": "rimraf dist",
-		"prepack": "npm run build",
-		"prepublishOnly": "npm test"
-	},
-	"mocha": {
-		"extension": [
-			"ts"
-		],
-		"require": "ts-node/register",
-		"spec": "test/*.test.ts",
-		"timeout": "5000"
-	},
 	"devDependencies": {
 		"@types/chai": "5.0.0",
 		"@types/node": "22.7.5",
@@ -28,5 +10,23 @@
 		"onnxruntime-web": "1.19.2",
 		"rimraf": "6.0.1",
 		"ts-loader": "9.5.1"
-	}
+	},
+	"main": "dist/lib/index.js",
+	"mocha": {
+		"extension": [
+			"ts"
+		],
+		"require": "ts-node/register",
+		"spec": "test/*.test.ts",
+		"timeout": "5000"
+	},
+	"module": "dist/lib/index.js",
+	"name": "@vscode/vscode-extension-recommender",
+	"scripts": {
+		"build": "npm run clean && webpack --mode production",
+		"clean": "rimraf dist",
+		"prepack": "npm run build",
+		"prepublishOnly": "npm test"
+	},
+	"types": "dist/index.d.ts"
 }
