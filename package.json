@@ -2,7 +2,7 @@
 	"description": "Deep learning model to recommend the best extension for a given VS Code workspace",
 	"devDependencies": {
 		"@types/chai": "5.0.0",
-		"@types/node": "22.7.9",
+		"@types/node": "22.8.1",
 		"chai": "5.1.2",
 		"esbuild": "0.24.0",
 		"node-fetch": "3.3.2",
