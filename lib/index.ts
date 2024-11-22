@@ -69,7 +69,9 @@ export class SessionOperations {
 			return;
 		}
 		const fs = await import("fs");
+
 		const path = await import("path");
+
 		const modelPath = path.join(__dirname, "..", "model");
 
 		env.wasm.numThreads = 1;
@@ -83,6 +85,7 @@ export class SessionOperations {
 				executionProviders: ["wasm"],
 			},
 		);
+
 		const encodingFile = JSON.parse(
 			await fs.promises.readFile(
 				path.join(modelPath, "feature_encoding.json"),
@@ -96,9 +99,11 @@ export class SessionOperations {
 		[key: string]: { [key: string]: number };
 	}) {
 		this._featuresSize = 0;
+
 		for (const [name, encodingList] of Object.entries(encodingFile)) {
 			const map = new Map(Object.entries(encodingList));
 			this._featuresSize += map.size;
+
 			if (name == "Extension") {
 				this._extensionIds = map;
 			} else {
@@ -126,6 +131,7 @@ export class SessionOperations {
 		await this.loadSession();
 
 		const input: Map<string, Set<string>> = new Map();
+
 		if (inputs.previouslyInstalled?.length) {
 			input.set(
 				"PreviouslyInstalled",
@@ -183,13 +189,16 @@ export class SessionOperations {
 
 		// First build signal vector based on input, this will be same for all candidate extensions' score calculation.
 		const tensor = this._inputTensor!.fill(0);
+
 		for (const [featureName, featureMap] of this._featureEncodings) {
 			const featureSet = input.get(featureName);
+
 			if (!featureSet) {
 				continue;
 			}
 			for (const feature of featureSet.values()) {
 				const index = featureMap.get(feature);
+
 				if (index != undefined) {
 					tensor[index] = 1;
 				} else {
@@ -200,6 +209,7 @@ export class SessionOperations {
 
 		// Then, repeat signalVector N times, here N is the number of candidate extensions, because the Session will predict a score to each candidate extensions
 		const featuresSize = this._featuresSize;
+
 		for (let i = 1; i < featuresSize; i++) {
 			tensor.copyWithin(i * featuresSize, 0, featuresSize);
 		}
@@ -210,7 +220,9 @@ export class SessionOperations {
 		}
 
 		const outputTensor = this._outputTensor!;
+
 		const outputName = this._session!.outputNames[0];
+
 		const result = await this._session!.run(
 			{ inputs: new Tensor(tensor, [extensionSize, featuresSize]) },
 			{
@@ -224,9 +236,11 @@ export class SessionOperations {
 				...inferenceOptions,
 			},
 		);
+
 		const data = result[outputName].data as Float32Array;
 
 		const scores: Array<SessionResult> = [];
+
 		for (const [extensionId, index] of this._extensionIds) {
 			if (data[index] < confidencePass) {
 				continue;
@@ -243,6 +257,7 @@ export class SessionOperations {
 		scores.sort((a, b) => {
 			return b.confidence - a.confidence;
 		});
+
 		return scores;
 	}
 }
