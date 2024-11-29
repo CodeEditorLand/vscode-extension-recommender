@@ -58,16 +58,22 @@ export interface SessionInputs {
 
 export class SessionOperations {
 	private _session: InferenceSession | undefined;
+
 	private _featuresSize: number = 0;
+
 	private _extensionIds: Map<string, number> = new Map();
+
 	private _featureEncodings: Map<string, Map<string, number>> = new Map();
+
 	private _inputTensor?: Int32Array;
+
 	private _outputTensor?: Float32Array;
 
 	private async loadSession() {
 		if (this._session) {
 			return;
 		}
+
 		const fs = await import("fs");
 
 		const path = await import("path");
@@ -75,10 +81,13 @@ export class SessionOperations {
 		const modelPath = path.join(__dirname, "..", "model");
 
 		env.wasm.numThreads = 1;
+
 		env.wasm.simd = false;
+
 		env.wasm.wasmPaths = {
 			"ort-wasm.wasm": path.join(__dirname, "..", "ort-wasm.wasm"),
 		};
+
 		this._session = await InferenceSession.create(
 			path.join(modelPath, "model.onnx"),
 			{
@@ -92,6 +101,7 @@ export class SessionOperations {
 				"utf8",
 			),
 		);
+
 		this._prepareSession(encodingFile);
 	}
 
@@ -102,6 +112,7 @@ export class SessionOperations {
 
 		for (const [name, encodingList] of Object.entries(encodingFile)) {
 			const map = new Map(Object.entries(encodingList));
+
 			this._featuresSize += map.size;
 
 			if (name == "Extension") {
@@ -110,9 +121,11 @@ export class SessionOperations {
 				this._featureEncodings.set(name, map);
 			}
 		}
+
 		this._inputTensor = new Int32Array(
 			this._extensionIds.size * this._featuresSize,
 		);
+
 		this._outputTensor = new Float32Array(this._extensionIds.size);
 	}
 
@@ -140,6 +153,7 @@ export class SessionOperations {
 				),
 			);
 		}
+
 		if (inputs.openedFileTypes?.length) {
 			input.set(
 				"OpenedFileTypes",
@@ -150,6 +164,7 @@ export class SessionOperations {
 				),
 			);
 		}
+
 		if (inputs.activatedExtensions?.length) {
 			input.set(
 				"ActivatedExts",
@@ -158,6 +173,7 @@ export class SessionOperations {
 				),
 			);
 		}
+
 		if (inputs.workspaceDependencies?.length) {
 			input.set(
 				"WorkspaceDependencies",
@@ -168,6 +184,7 @@ export class SessionOperations {
 				),
 			);
 		}
+
 		if (inputs.workspaceFileTypes?.length) {
 			input.set(
 				"WorkspaceFileTypes",
@@ -178,6 +195,7 @@ export class SessionOperations {
 				),
 			);
 		}
+
 		if (inputs.workspaceConfigTypes?.length) {
 			input.set(
 				"WorkspaceConfigTypes",
@@ -196,6 +214,7 @@ export class SessionOperations {
 			if (!featureSet) {
 				continue;
 			}
+
 			for (const feature of featureSet.values()) {
 				const index = featureMap.get(feature);
 
@@ -213,6 +232,7 @@ export class SessionOperations {
 		for (let i = 1; i < featuresSize; i++) {
 			tensor.copyWithin(i * featuresSize, 0, featuresSize);
 		}
+
 		const extensionSize = this._extensionIds.size;
 		// add candidate extensions
 		for (let i = 0; i < extensionSize; i++) {
@@ -245,9 +265,11 @@ export class SessionOperations {
 			if (data[index] < confidencePass) {
 				continue;
 			}
+
 			if (input.get("PreviouslyInstalled")?.has(extensionId)) {
 				continue;
 			}
+
 			scores.push({
 				extensionId,
 				confidence: data[index],
